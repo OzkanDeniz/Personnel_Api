@@ -25,7 +25,13 @@ require("express-async-errors");
 const dbConnetion = require("./src/configs/dbConnection");
 
 //body parse
-app.use(express.json())
+app.use(express.json());
+
+// cookie: httpOnly:true XSS Cross Site Scripting, secure:https
+const session = require("cookie-session");
+
+// Run with general settings:
+app.use(session({ secret: process.env.SECRET_KEY, httpOnly: false })); //!httpOnly default:true secure:false
 
 /* ------------------------------------------------------- */
 
