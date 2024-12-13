@@ -33,6 +33,31 @@ const session = require("cookie-session");
 // Run with general settings:
 app.use(session({ secret: process.env.SECRET_KEY, httpOnly: false })); //!httpOnly default:true secure:false
 
+// res.getModelList():
+app.use(require("./src/middlewares/findSearchSortPage"));
+
+// HomePath:
+app.all("/", (req, res) => {
+  res.send({
+    error: false,
+    message: "Welcome to PERSONNEL API",
+    session: req.session,
+  });
+});
+
+//departments
+app.use("/department", require("./src/routes/department.router"));
+//personnels
+app.use("/personnel", require("./src/routes/personnel.router"));
+
+//not found routes
+app.all("*", async (req, res) => {
+  res.status(404).send({
+    error: true,
+    message: "Route not available",
+  });
+});
+
 /* ------------------------------------------------------- */
 
 // errorHandler:
@@ -44,3 +69,10 @@ app.listen(PORT, () => console.log("http://127.0.0.1:" + PORT));
 /* ------------------------------------------------------- */
 // Syncronization (must be in commentLine):
 // require('./src/helpers/sync')()
+
+if (process.env.NODE_ENV == "development") {
+  return;
+  require("./src/helpers/dataCreate")()
+    .then((res) => console.log("Data synched"))
+    .catch((err) => console.error("Data could not synched"));
+}
