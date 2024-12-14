@@ -8,7 +8,7 @@ const department = require("../controllers/department.controller");
 
 /* ------------------------------------------------------- */
 router.route("/").get(department.list).post(department.create);
-
+ 
 router
   .route("/:id")
   .get(department.read)
