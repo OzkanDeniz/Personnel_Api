@@ -9,6 +9,7 @@
 */
 
 const express = require("express");
+const { dbConnection, mongoose } = require("./src/configs/dbConnection");
 const app = express();
 
 /* ------------------------------------------------------- */
@@ -22,7 +23,7 @@ const PORT = process.env?.PORT || 8000;
 require("express-async-errors");
 
 //db connection:
-const dbConnetion = require("./src/configs/dbConnection");
+dbConnection();
 
 //body parse
 app.use(express.json());

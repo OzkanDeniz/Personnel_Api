@@ -4,3 +4,6 @@
 ------------------------------------------------------- */
 const { mongoose } = require('../configs/dbConnection')
 /* ------------------------------------------------------- */
+const DepartmentSchema = new mongoose.Schema({
+     
+})
