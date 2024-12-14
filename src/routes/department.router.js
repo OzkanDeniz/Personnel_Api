@@ -10,7 +10,7 @@ const department = require("../controllers/department.controller");
 router.route("/").get(department.list).post(department.create);
 
 router
-  .route(":id")
+  .route("/:id")
   .get(department.read)
   .put(department.update)
   .patch(department.update)
