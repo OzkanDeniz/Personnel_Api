@@ -72,7 +72,7 @@ module.exports = {
     }
 
     //! Does it perform update validation by default?
-    const data = Personnel.updateOne({ _id: req.params.id }, req.body, {
+    const data = await Personnel.updateOne({ _id: req.params.id }, req.body, {
       runValidators: true,
     });
     res.status(201).send({
