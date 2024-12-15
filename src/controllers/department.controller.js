@@ -34,7 +34,9 @@ module.exports = {
 
   update: async (req, res) => {
     //! Does it perform update validaiton by default? No, with runValidators:true does it perform.
-    const data = await Department.updateOne({ _id: req.params.id }, req.body, {runValidators: true,});
+    const data = await Department.updateOne({ _id: req.params.id }, req.body, {
+      runValidators: true,
+    });
     res.status(202).send({
       error: false,
       data,
