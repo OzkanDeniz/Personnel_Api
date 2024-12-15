@@ -127,7 +127,7 @@ module.exports = {
     }
   },
 
-  logout: async () => {
+  logout: async (req,res) => {
     req.session = null;
     res.send({
       error: false,
