@@ -94,45 +94,36 @@ module.exports = {
 
   login: async (req, res) => {
     const { username, password } = req.body;
-
+    //!authentication:
     if (username && password) {
       const user = await Personnel.findOne({ username, password });
       if (user) {
         if (user.password !== passwordEncrypt(password)) {
-          res.errorStatusCode = 401;
+          res.errorstatusCode = 401;
           throw new Error("Login parameters are not true.");
         }
-        // Set Session:
+        //Set Session:
         req.session = {
           id: user._id,
-          password: user.password,
+          password: user.password, //!Normalde password gönderilmez güvenlik açığı oluşur.
         };
-        // Set Cookie:
+        //Set Cookie
         if (req.body?.rememberMe) {
-          req.session.rememberMe = true;
-          req.sessionOptions.maxAge = 1000 * 60 * 60 * 24 * 3; // 3 Days
+          (req.session.rememberMe = true),
+            (req.sessionOptions.maxAge = 1000 * 60 * 60 * 24 * 3);
         }
-
         res.status(200).send({
           error: false,
           message: "Login is OK",
           user,
         });
       } else {
-        res.errorStatusCode = 401;
-        throw new Error("Wrong Username or Password.");
+        res.errorstatusCode = 401;
+        throw new Error("Wrong username and password");
       }
     } else {
-      res.errorStatusCode = 401;
+      res.errorstatusCode = 401;
       throw new Error("Please enter a valid username and password.");
     }
-  },
-
-  logout: async (req, res) => {
-    req.session = null;
-    res.send({
-      error: false,
-      maessage: "Logout is completed",
-    });
   },
 };
