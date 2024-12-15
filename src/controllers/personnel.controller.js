@@ -126,4 +126,12 @@ module.exports = {
       throw new Error("Please enter a valid username and password.");
     }
   },
+
+  logout: async () => {
+    req.session = null;
+    res.send({
+      error: false,
+      message: "Logout is completed",
+    });
+  },
 };
