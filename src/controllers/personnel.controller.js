@@ -11,10 +11,10 @@ module.exports = {
     const data = await res.getModelList(Personnel, "departmentId");
     res.status(200).send({
       error: false,
-      //!data
-      data,
       //!detail
       detail: await res.getModelListDetails(Personnel),
+      //!data
+      data,
     });
   },
 
