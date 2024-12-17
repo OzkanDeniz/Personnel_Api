@@ -3,19 +3,20 @@
     EXPRESS - Personnel API
 ------------------------------------------------------- */
 const Department = require("../models/department.model");
+const Personnel = require("../models/personnel.model");
 
 module.exports = {
   list: async (req, res) => {
     //!data
-    const data = await res.getmodelList(Department);
+    const data = await res.getModelList(Department);
     res.status(200).send({
       error: false,
       data,
       //!detail
       detail: await res.getModelListDetails(Department),
     });
+    console.log(res);
   },
-
   create: async (req, res) => {
     const data = await Department.create(req.body);
     res.status(201).send({
@@ -48,6 +49,18 @@ module.exports = {
     const data = await Department.deleteOne({ _id: req.params.id });
     res.status(data.deletedCount ? 204 : 404).send({
       error: !data.deletedCount,
+      data,
+    });
+  },
+
+  personnels: async (req, res) => {
+    //!data
+    const filter = { departmentId: req.params.id };
+    const data = await res.getModelList(Personnel, filter, "departmentId");
+    res.status(200).send({
+      error: false,
+      //!detail
+      detail: await res.getModelListDetails(Personnel, filter),
       data,
     });
   },
