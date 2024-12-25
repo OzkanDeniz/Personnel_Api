@@ -36,4 +36,19 @@ module.exports = {
       throw new Error("Lütfen kullanıcı adı ve şifre");
     }
   },
+
+  logout: async (req, res) => {
+    req.session = null; // oturum bilgileri temizlendi.
+
+    const ayth = req.headers?.authorization || null;
+    const tokenKey = auth ? auth.split(" ") : null;
+    let deleted = null
+    if(tokenKey && tokenKey[0]== "Token"){
+        deleted = await Token.deleteOne({token:tokenKey[1]})
+        res.status(200).send({
+            message:"logout: token deleted",
+            deleted //! silinen gösterilsin.
+        })
+    }
+  },
 };
