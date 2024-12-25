@@ -1,17 +1,18 @@
 "user strict";
 const { isAdmin } = require("../middlewares/permission");
 const router = require("express").Router();
-const token = require("../controllers/token");
+const {
+  list,
+  read,
+  update,
+  create,
+  delete: deleteToken,
+} = require("../controllers/token");
 
 router.use(isAdmin);
 
-router.route("/").get(token.list).post(token.create);
+router.route("/").get(list).post(create);
 
-router
-  .route("/:id")
-  .get(token.read)
-  .put(token.update)
-  .patch(token.update)
-  .delete(token.delete);
+router.route("/:id").get(read).put(update).patch(update).delete(deleteToken);
 
-module.exports = router;
+module.exports = router; //! authentication için middleware de bir auth.js aç.
