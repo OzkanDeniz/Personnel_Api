@@ -13,7 +13,7 @@ module.exports = {
       if (user && user.isActive) {
         //!Token
         //*token var mıdır? kullanıcı _id özelliği her kayıt için benzersiz bir tanımlayıcıydı. Eğer token modelinde userId alanı _id eşit olan bir kaydı bulursa kullanıcının kaydı var demeketir.
-        let tokenData = await Token.findOne({ userId: user._İd });
+        let tokenData = await Token.findOne({ userId: user._id });
 
         if (!tokenData) {
           //tokenData undefined ya da null ise
@@ -40,7 +40,7 @@ module.exports = {
   logout: async (req, res) => {
     req.session = null; // oturum bilgileri temizlendi.
 
-    const ayth = req.headers?.authorization || null;
+    const auth = req.headers?.authorization || null;
     const tokenKey = auth ? auth.split(" ") : null;
     let deleted = null
     if(tokenKey && tokenKey[0]== "Token"){

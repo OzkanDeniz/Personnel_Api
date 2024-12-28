@@ -5,19 +5,20 @@
 const router = require("express").Router();
 /* ------------------------------------------------------- */
 const personnel = require("../controllers/personnel.controller");
+const idValidation = require("../middlewares/idValidation");
 
 /* ------------------------------------------------------- */
 //URL: /personnel
 //http://localhost:8000/personnel/login
 //!login logout
-router.post("/login", personnel.login);
-router.all("/logout", personnel.logout);
+// router.post("/login", personnel.login);
+// router.all("/logout", personnel.logout);
 
 router.route("/").get(personnel.list).post(personnel.create);
 
 router
   .route("/:id")
-  .get(personnel.read)
+  .get(idValidation, personnel.read)
   .put(personnel.update)
   .patch(personnel.update)
   .delete(personnel.delete);
