@@ -6,7 +6,7 @@ const passwordEncrypt = require("../helpers/passwordEncrypt");
 
 module.exports = {
   login: async (req, res) => {
-    const { username, pasword } = req.body; //bir personelin sistem girişi yapmasını sağlayacak parametreler.
+    const { username, password } = req.body; //bir personelin sistem girişi yapmasını sağlayacak parametreler.
 
     if (username && password) {
       const user = await Personel.findOne({ username, password });
@@ -18,7 +18,7 @@ module.exports = {
         if (!tokenData) {
           //tokenData undefined ya da null ise
           const tokenKey = passwordEncrypt(user._id + Date.now()); //!burada kullanıcının benzersiz id si ile o anın zamanı birleşir elde edilen girdi passwordEncrypt fonksiyonuna verilir ve sonuç olarak benzersiz bir id oluşur.
-          console.log(tokenkey);
+          console.log(tokenKey);
           tokenData = await Token.create({ userId: user._id, token: tokenKey });
           //? yeni oluşturalan tokenkey kullanıcının ıd si ile beraber modele göre(modelde vermişti userId ve token) veritabanına eklenir ve buna da dokenData der. Yani şöyle bir somut örnek olabilri tokenData={userId:"123456", token: "12h64jdsak53"}
         }
@@ -42,13 +42,13 @@ module.exports = {
 
     const auth = req.headers?.authorization || null;
     const tokenKey = auth ? auth.split(" ") : null;
-    let deleted = null
-    if(tokenKey && tokenKey[0]== "Token"){
-        deleted = await Token.deleteOne({token:tokenKey[1]})
-        res.status(200).send({
-            message:"logout: token deleted",
-            deleted //! silinen gösterilsin.
-        })
+    let deleted = null;
+    if (tokenKey && tokenKey[0] == "Token") {
+      deleted = await Token.deleteOne({ token: tokenKey[1] });
+      res.status(200).send({
+        message: "logout: token deleted",
+        deleted, //! silinen gösterilsin.
+      });
     }
   },
 };

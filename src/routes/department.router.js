@@ -12,10 +12,7 @@ const {
 } = require("../middlewares/permissions");
 
 /* ------------------------------------------------------- */
-router
-  .route("/")
-  .get(isAdminorLead, department.list)
-  .post(isAdmin, department.create);
+router.route("/").get(department.list).post(isAdmin, department.create);
 
 router
   .route("/:id")

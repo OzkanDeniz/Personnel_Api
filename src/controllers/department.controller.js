@@ -15,7 +15,7 @@ module.exports = {
       //!detail
       detail: await res.getModelListDetails(Department),
     });
-    console.log(res);
+    // console.log(res);
   },
   create: async (req, res) => {
     const data = await Department.create(req.body);

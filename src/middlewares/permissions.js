@@ -2,10 +2,11 @@
 
 module.exports = {
   isLogin: (req, res, next) => {
-    if (req.user && req.use.isActive) {
+    if (req.user && req.user.isActive) {
+      console.log(req.user)
       next();
     } else {
-      res.errrorStatusCode = 403;
+      res.errorStatusCode = 403;
       throw new Error("Nopermission : You must Login.");
     }
   },
@@ -13,7 +14,7 @@ module.exports = {
     if (req.user && req.user.isActive && req.user.isAdmin) {
       next();
     } else {
-      res.errrorStatusCode = 403;
+      res.errorStatusCode = 403;
       throw new Error("Nopermission : You must Login and to be Admin.");
     }
   },
@@ -22,11 +23,11 @@ module.exports = {
       req.user &&
       req.user.isActive &&
       (req.user.isAdmin ||
-        (req.user.isLead && req.user.departmentId === departmentId))
+        (req.user.isLead && req.user.departmentId === req.params.departmentId))
     ) {
       next();
     } else {
-      res.errrorStatusCode = 403;
+      res.errorStatusCode = 403;
       throw new Error("Nopermission : You must be login Admin or DepartmentLead.");
     }
   },

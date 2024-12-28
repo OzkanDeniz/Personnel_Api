@@ -15,10 +15,10 @@ module.exports = async (req, res, next) => {
     const tokenData = await Token.findOne({ token: tokenKey[1] }).populate(
       "userId"
     ); //bu tokena ait kılanıcının userId sinide göster tokenData nın içerisinde.
-    console.log(tokenData);
+    // console.log(tokenData);
     if (tokenData) req.user = tokenData.userId; //zaten tokenData varsa eşle
 
-    console.log(req.user);
+    // console.log(req.user);
   }
   next();
 };
