@@ -10,7 +10,7 @@ const permission = require("../middlewares/permission");
 /* ------------------------------------------------------- */
 router
   .route("/")
-  .get(department.list)
+  .get(permission.isAdminorLead,department.list)
   .post(permission.isAdmin, department.create);
 
 router
