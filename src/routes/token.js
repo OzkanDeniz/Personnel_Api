@@ -1,5 +1,5 @@
 "user strict";
-const { isAdmin } = require("../middlewares/permission");
+const { isAdmin } = require("../middlewares/permissions");
 const router = require("express").Router();
 const {
   list,

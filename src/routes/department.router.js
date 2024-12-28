@@ -5,20 +5,24 @@
 const router = require("express").Router();
 /* ------------------------------------------------------- */
 const department = require("../controllers/department.controller");
-const permission = require("../middlewares/permission");
+const {
+  isAdmin,
+  isAdminorLead,
+  isLogin,
+} = require("../middlewares/permissions");
 
 /* ------------------------------------------------------- */
 router
   .route("/")
-  .get(permission.isAdminorLead,department.list)
-  .post(permission.isAdmin, department.create);
+  .get(isAdminorLead, department.list)
+  .post(isAdmin, department.create);
 
 router
   .route("/:id")
-  .get(permission.isLogin,department.read)
-  .put(permission.isAdmin,department.update)
-  .patch(permission.isAdmin,department.update)
-  .delete(permission.isAdmin,department.delete);
+  .get(isLogin, department.read)
+  .put(isAdmin, department.update)
+  .patch(isAdmin, department.update)
+  .delete(isAdmin, department.delete);
 
 //! /department/:id/personnel
 router.get("/:id/personnel", department.personnels);
