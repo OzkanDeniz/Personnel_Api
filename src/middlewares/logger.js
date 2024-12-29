@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 //LOGGER
 //npm i morgan
@@ -29,8 +29,6 @@ const now = new Date();
 // console.log(now, typeof now);
 const today = now.toISOString().split("T")[0];
 console.log(today);
-app.use(
-  morgan("combined", {
-    stream: fs.createWriteStream(`./logs/${today}.log`, { flags: "a+" }),
-  })
-);
+module.exports = morgan("combined", {
+  stream: fs.createWriteStream(`./logs/${today}.log`, { flags: "a+" }),
+});

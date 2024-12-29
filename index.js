@@ -23,6 +23,8 @@ const PORT = process.env?.PORT || 8000;
 require("express-async-errors");
 
 /* ------------------------------------------------------- */
+//Logger:
+app.use(require("./src/middlewares/logger"))
 
 //db connection:
 dbConnection();
