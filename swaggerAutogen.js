@@ -20,7 +20,7 @@ const document = {
   host: HOST + ":" + PORT,
   basePath: "/",
   schemes: ["http,https"],
-  securityDefinations: {
+  securityDefinitions: {
     //Simple Token:
     Token: {
       type: "apiKey",

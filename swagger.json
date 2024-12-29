@@ -16,6 +16,14 @@
   "schemes": [
     "http,https"
   ],
+  "securityDefinitions": {
+    "Token": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization",
+      "description": "Simple Token * Example: <b>Token ...tokenKey...</b> "
+    }
+  },
   "paths": {
     "/auth/login": {
       "post": {
@@ -373,14 +381,6 @@
           }
         }
       }
-    }
-  },
-  "securityDefinations": {
-    "Token": {
-      "type": "apiKey",
-      "in": "header",
-      "name": "Authorization",
-      "description": "Simple Token * Example: <b>Token ...tokenKey...</b> "
     }
   },
   "security": [
