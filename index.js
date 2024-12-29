@@ -35,7 +35,7 @@ const morgan = require("morgan")
 // app.use(morgan("combined"))
 
 //Custom Logs:
-app.use(morgan('TIME:"date[iso]" - URL:":url" - Method:":method" - IP:"remote-addr" - Ref:":referrer" - Status:":status" - Sign:":user-agent" (:response-time[digits] ms)'))
+app.use(morgan('TIME:":date[iso]" - URL:":url" - Method:":method" - IP:":remote-addr" - Ref:":referrer" - Status:":status" - Sign:":user-agent" (:response-time[digits] ms)'))
 
 
 
