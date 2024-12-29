@@ -22,6 +22,21 @@ const PORT = process.env?.PORT || 8000;
 //asyncErrors to errorHandler:
 require("express-async-errors");
 /* ------------------------------------------------------- */
+//LOGGER
+//npm i morgan
+
+const morgan = require("morgan")
+
+//Morgan is Middleware
+// app.use(morgan("tiny"))
+// app.use(morgan("short"))
+// app.use(morgan("dev"))
+// app.use(morgan("common"))
+// app.use(morgan("combined"))
+
+//Custom Logs:
+app.use(morgan('TIME:"date[iso]" - URL:":url" - Method:":method" - IP:"remote-addr" - Ref:":referrer" - Status:":status" - Sign:":user-agent" (:response-time[digits] ms)'))
+
 
 
 /* ------------------------------------------------------- */
