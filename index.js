@@ -23,8 +23,30 @@ const PORT = process.env?.PORT || 8000;
 require("express-async-errors");
 
 /* ------------------------------------------------------- */
+//* DOCUMENTATION
+
+//* SWAGGER
+const swaggerUi = require("swagger-ui-express");
+const swaggerJson = require("./swagger.json");
+app.use(
+  "/documents/swagger",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerJson, {
+    swaggerOptions: { persistAuthorization: true },
+  })
+);
+
+//* REDOC
+// https://www.npmjs.com/package/redoc-express
+const redoc = require("redoc-express");
+app.use(
+  "/documents/redoc",
+  redoc({ specUrl: "/documents/json", title: "Redoc UI" })
+);
+
+/* ------------------------------------------------------- */
 //Logger:
-app.use(require("./src/middlewares/logger"))
+app.use(require("./src/middlewares/logger"));
 
 //db connection:
 dbConnection();
