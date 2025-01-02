@@ -25,6 +25,11 @@ require("express-async-errors");
 /* ------------------------------------------------------- */
 //* DOCUMENTATION
 
+//*JSON
+app.use("/documents/json", (req, res) => {
+  res.sendFile("swagger.json", { root: "." });
+});
+
 //* SWAGGER
 const swaggerUi = require("swagger-ui-express");
 const swaggerJson = require("./swagger.json");
