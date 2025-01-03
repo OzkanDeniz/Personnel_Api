@@ -36,6 +36,13 @@ module.exports = {
   },
 
   create: async (req, res) => {
+     /*
+    
+    #swagger.tags =['Personnels']
+    #swagger.summary = 'Create Personnel'
+  
+  
+    */
     //! sistemde bir admin olacaksa ve db de admin önceden tanımlanmışsa
     // const isFirstAccount = (await Personnel.countDocuments()) === 0;
     // req.body.isAdmin = isFirstAccount ? true : false;
@@ -64,6 +71,13 @@ module.exports = {
   },
 
   read: async (req, res) => {
+     /*
+    
+    #swagger.tags =['Personnels']
+    #swagger.summary = 'Read Single Personnel'
+  
+  
+    */
     const data = await Personnel.findOne({ _id: req.params.id });
     res.status(200).send({
       error: false,
@@ -72,6 +86,13 @@ module.exports = {
   },
 
   update: async (req, res) => {
+     /*
+    
+    #swagger.tags =['Personnels']
+    #swagger.summary = 'Update Personnel'
+  
+  
+    */
     //!isLead Control:
     const isLead = req.body.isLead || false;
 
@@ -100,6 +121,13 @@ module.exports = {
   },
 
   delete: async (req, res) => {
+     /*
+    
+    #swagger.tags =['Personnels']
+    #swagger.summary = 'Delete Personnel'
+  
+  
+    */
     const data = await Personnel.deleteOne({ _id: req.params.id });
     res.status(data.deletedCount ? 204 : 404).send({
       error: !data.deletedCount,

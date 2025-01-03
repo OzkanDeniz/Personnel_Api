@@ -87,6 +87,10 @@
         }
       },
       "post": {
+        "tags": [
+          "Personnels"
+        ],
+        "summary": "Create Personnel",
         "description": "",
         "parameters": [
           {
@@ -117,6 +121,10 @@
     },
     "/personnel/{id}": {
       "get": {
+        "tags": [
+          "Personnels"
+        ],
+        "summary": "Read Single Personnel",
         "description": "",
         "parameters": [
           {
@@ -133,6 +141,10 @@
         }
       },
       "put": {
+        "tags": [
+          "Personnels"
+        ],
+        "summary": "Update Personnel",
         "description": "",
         "parameters": [
           {
@@ -161,6 +173,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "Personnels"
+        ],
+        "summary": "Delete Personnel",
         "description": "",
         "parameters": [
           {
@@ -180,6 +196,10 @@
         }
       },
       "patch": {
+        "tags": [
+          "Personnels"
+        ],
+        "summary": "Update Personnel",
         "description": "",
         "parameters": [
           {
