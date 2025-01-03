@@ -44,10 +44,7 @@ app.use(
 //* REDOC
 // https://www.npmjs.com/package/redoc-express
 const redoc = require("redoc-express");
-app.use(
-  "/documents/redoc",
-  redoc({ specUrl: "/documents/json", title: "Redoc UI" })
-);
+app.use("/documents/redoc",redoc({ specUrl: "/documents/json", title: "Redoc UI" }));
 
 /* ------------------------------------------------------- */
 //Logger:
