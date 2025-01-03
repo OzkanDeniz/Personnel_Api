@@ -96,17 +96,17 @@
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {
-                "isAdmin": {
-                  "example": "any"
+                "username": {
+                  "type": "string",
+                  "example": "*String"
                 },
-                "isLead": {
-                  "example": "any"
-                },
-                "departmentId": {
-                  "example": "any"
+                "password": {
+                  "type": "string",
+                  "example": "*String"
                 }
               }
             }

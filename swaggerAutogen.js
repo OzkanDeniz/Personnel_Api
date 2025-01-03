@@ -30,7 +30,14 @@ const document = {
     },
   },
   security: [{ Token: [] }],
+  //Models & Their Fields:
+  definitions: {
+    Department: require("./src/models/department.model").schema.obj,
+    Personnel: require("./src/models/personnel.model").schema.obj,
+  },
 };
+
+// console.log(require("./src/models/personnel.model").schema);
 
 const routes = ["./index"];
 const outputFile = "./swagger.json";
